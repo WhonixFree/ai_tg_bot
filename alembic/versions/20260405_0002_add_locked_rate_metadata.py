@@ -19,8 +19,8 @@ depends_on = None
 
 def upgrade() -> None:
     op.add_column("payments", sa.Column("rate_source", sa.String(length=50), nullable=True))
-    op.add_column("payments", sa.Column("rate_base_currency", sa.String(length=10), nullable=True))
-    op.add_column("payments", sa.Column("rate_quote_currency", sa.String(length=10), nullable=True))
+    op.add_column("payments", sa.Column("rate_base_currency", sa.String(length=16), nullable=True))
+    op.add_column("payments", sa.Column("rate_quote_currency", sa.String(length=16), nullable=True))
     op.add_column("payments", sa.Column("rate_value_usd", sa.Numeric(20, 8), nullable=True))
     op.add_column("payments", sa.Column("rate_fetched_at", sa.DateTime(timezone=True), nullable=True))
     op.add_column("payments", sa.Column("amount_before_rounding", sa.Numeric(20, 8), nullable=True))

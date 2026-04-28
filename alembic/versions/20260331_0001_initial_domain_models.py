@@ -30,7 +30,7 @@ def upgrade() -> None:
         sa.Column("is_active", sa.Boolean(), nullable=False, server_default=sa.true()),
         sa.Column(
             "access_type",
-            sa.Enum("lifetime_guide_access", name="plan_access_type", native_enum=False),
+            sa.Enum("lifetime_guide_access", name="plan_access_type", native_enum=False, length=32),
             nullable=False,
         ),
         sa.Column("created_at", sa.DateTime(timezone=True), nullable=False, server_default=sa.func.now()),
@@ -81,7 +81,7 @@ def upgrade() -> None:
         sa.Column("amount_usd", sa.Numeric(10, 2), nullable=False),
         sa.Column(
             "payment_provider",
-            sa.Enum("2328", name="payment_provider", native_enum=False),
+            sa.Enum("2328", name="payment_provider", native_enum=False, length=32),
             nullable=False,
         ),
         sa.Column(
@@ -96,6 +96,7 @@ def upgrade() -> None:
                 "failed",
                 name="order_status",
                 native_enum=False,
+                length=32,
             ),
             nullable=False,
         ),
@@ -125,7 +126,7 @@ def upgrade() -> None:
         sa.Column("plan_id", sa.Integer(), nullable=False),
         sa.Column(
             "status",
-            sa.Enum("active", "expired", "revoked", name="subscription_status", native_enum=False),
+            sa.Enum("active", "expired", "revoked", name="subscription_status", native_enum=False, length=32),
             nullable=False,
         ),
         sa.Column("is_lifetime", sa.Boolean(), nullable=False, server_default=sa.true()),
@@ -157,7 +158,7 @@ def upgrade() -> None:
         sa.Column("message_id", sa.Integer(), nullable=False),
         sa.Column(
             "message_type",
-            sa.Enum("screen", "invoice", "access", "system", name="bot_message_type", native_enum=False),
+            sa.Enum("screen", "invoice", "access", "system", name="bot_message_type", native_enum=False, length=32),
             nullable=False,
         ),
         sa.Column("created_at", sa.DateTime(timezone=True), nullable=False, server_default=sa.func.now()),
@@ -190,12 +191,13 @@ def upgrade() -> None:
                 "unknown",
                 name="payment_status",
                 native_enum=False,
+                length=32,
             ),
             nullable=False,
         ),
         sa.Column("payer_currency", sa.String(length=50), nullable=True),
         sa.Column("payer_amount", sa.Numeric(20, 8), nullable=True),
-        sa.Column("network", sa.String(length=100), nullable=True),
+        sa.Column("network", sa.String(length=256), nullable=True),
         sa.Column("address", sa.String(length=255), nullable=True),
         sa.Column("qr_data_uri", sa.Text(), nullable=True),
         sa.Column("provider_url", sa.Text(), nullable=True),
@@ -223,7 +225,7 @@ def upgrade() -> None:
         sa.Column("invite_link", sa.Text(), nullable=False),
         sa.Column(
             "status",
-            sa.Enum("active", "revoked", name="access_link_status", native_enum=False),
+            sa.Enum("active", "revoked", name="access_link_status", native_enum=False, length=32),
             nullable=False,
         ),
         sa.Column("created_at", sa.DateTime(timezone=True), nullable=False, server_default=sa.func.now()),
@@ -254,7 +256,7 @@ def upgrade() -> None:
         sa.Column("invite_link", sa.Text(), nullable=True),
         sa.Column(
             "decision",
-            sa.Enum("approved", "declined", "ignored", name="join_request_decision", native_enum=False),
+            sa.Enum("approved", "declined", "ignored", name="join_request_decision", native_enum=False, length=32),
             nullable=False,
         ),
         sa.Column("reason", sa.Text(), nullable=True),
