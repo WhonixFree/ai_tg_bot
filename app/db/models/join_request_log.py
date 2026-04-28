@@ -21,7 +21,7 @@ class JoinRequestLog(Base):
     actual_telegram_user_id: Mapped[int] = mapped_column(BigInteger, nullable=False)
     invite_link: Mapped[str | None] = mapped_column(Text, nullable=True)
     decision: Mapped[JoinRequestDecision] = mapped_column(
-        Enum(JoinRequestDecision, native_enum=False, validate_strings=True, name="join_request_decision"),
+        Enum(JoinRequestDecision, native_enum=False, validate_strings=True, name="join_request_decision", length=32),
         nullable=False,
     )
     reason: Mapped[str | None] = mapped_column(Text, nullable=True)

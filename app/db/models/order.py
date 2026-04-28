@@ -18,11 +18,11 @@ class Order(TimestampMixin, Base):
     plan_id: Mapped[int] = mapped_column(ForeignKey("plans.id", ondelete="RESTRICT"), nullable=False)
     amount_usd: Mapped[Decimal] = mapped_column(Numeric(10, 2), nullable=False)
     payment_provider: Mapped[PaymentProvider] = mapped_column(
-        Enum(PaymentProvider, native_enum=False, validate_strings=True, name="payment_provider"),
+        Enum(PaymentProvider, native_enum=False, validate_strings=True, name="payment_provider", length=32),
         nullable=False,
     )
     status: Mapped[OrderStatus] = mapped_column(
-        Enum(OrderStatus, native_enum=False, validate_strings=True, name="order_status"),
+        Enum(OrderStatus, native_enum=False, validate_strings=True, name="order_status", length=32),
         nullable=False,
     )
 

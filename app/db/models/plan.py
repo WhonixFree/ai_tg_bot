@@ -25,6 +25,7 @@ class Plan(TimestampMixin, Base):
             validate_strings=True,
             values_callable=lambda enum_cls: [item.value for item in enum_cls],
             name="plan_access_type",
+            length=32,
         ),
     )
 

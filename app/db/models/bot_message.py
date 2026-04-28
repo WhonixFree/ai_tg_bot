@@ -15,7 +15,7 @@ class BotMessage(TimestampMixin, Base):
     chat_id: Mapped[int] = mapped_column(BigInteger, nullable=False)
     message_id: Mapped[int] = mapped_column(nullable=False)
     message_type: Mapped[BotMessageType] = mapped_column(
-        Enum(BotMessageType, native_enum=False, validate_strings=True, name="bot_message_type"),
+        Enum(BotMessageType, native_enum=False, validate_strings=True, name="bot_message_type", length=32),
         nullable=False,
     )
 
