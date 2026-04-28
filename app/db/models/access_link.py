@@ -20,7 +20,7 @@ class AccessLink(TimestampMixin, Base):
     )
     invite_link: Mapped[str] = mapped_column(Text, unique=True, nullable=False)
     status: Mapped[AccessLinkStatus] = mapped_column(
-        Enum(AccessLinkStatus, native_enum=False, validate_strings=True, name="access_link_status"),
+        Enum(AccessLinkStatus, native_enum=False, validate_strings=True, name="access_link_status", length=32),
         nullable=False,
     )
     revoked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)

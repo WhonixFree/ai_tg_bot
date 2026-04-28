@@ -16,7 +16,7 @@ class Subscription(TimestampMixin, Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     plan_id: Mapped[int] = mapped_column(ForeignKey("plans.id", ondelete="RESTRICT"), nullable=False)
     status: Mapped[SubscriptionStatus] = mapped_column(
-        Enum(SubscriptionStatus, native_enum=False, validate_strings=True, name="subscription_status"),
+        Enum(SubscriptionStatus, native_enum=False, validate_strings=True, name="subscription_status", length=32),
         nullable=False,
     )
     is_lifetime: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
